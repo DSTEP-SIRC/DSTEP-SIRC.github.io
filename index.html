@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+        content="D-STEP: Dynamic Spatio-Temporal Pruning.">
+  <meta name="keywords" content="DSTEP, Pruning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
+  <title>D-STEP: Dynamic Spatio-Temporal Pruning</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -51,22 +51,22 @@
           <h1 class="title is-1 publication-title">D-STEP: Dynamic Spatio-Temporal Pruning</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://www.linkedin.com/in/avraham-raviv-47b3b5158/">Avraham Raviv</a><sup>1</sup>,</span>
+              <a href="https://www.linkedin.com/in/avraham-raviv-47b3b5158/">Avraham Raviv</a>,</span>
             <span class="author-block">
-              <a href="https://www.linkedin.com/in/yonatan-dinai-77295026/">Yonatan Dinai</a><sup>2</sup>,</span>
+              <a href="https://www.linkedin.com/in/yonatan-dinai-77295026/">Yonatan Dinai</a>,</span>
             <span class="author-block">
-              <a href="https://www.linkedin.com/in/igor-drozdov-895581176/">Igor Drozdov</a><sup>2</sup>,
+              <a href="https://www.linkedin.com/in/igor-drozdov-895581176/">Igor Drozdov</a,
             </span>
             <span class="author-block">
-              <a href="https://www.google.co.il/">Niv Zehngut</a><sup>2</sup>,
+              <a href="https://www.google.co.il/">Niv Zehngut</a>,
             </span>
             <span class="author-block">
-              <a href="https://www.linkedin.com/in/ishay-goldin-91624117/">Ishay Goldin</a><sup>2</sup>,
+              <a href="https://www.linkedin.com/in/ishay-goldin-91624117/">Ishay Goldin</a>,
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Samsung Israel R&D Center</span>
+            <span class="author-block">Samsung Israel R&D Center</span>
           </div>
 
           <div class="column has-text-centered">
@@ -136,65 +136,6 @@
   </div>
 </section>
 
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -203,20 +144,21 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
+            Video processing requires analysis of spatial features that are changing over time.
+            By combining spatial and temporal modelling together, 
+            a neural network can gain a better understanding of the scene with no increase in computation.
           </p>
           <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
+Spatio-temporal modeling
+can also be used to identify redundant and sparse information in both the spatial and
+
+the temporal domains. In this work we present <em><b>Dynamic Spatio-Temporal Pruning, D-
+STEP<b/><em/>, a new, simple, yet efficient method for learning the evolution of spatial mapping
+
+between frames. More specifically, we used a cascade of lightweight policy networks to
+dynamically filter out, per input, regions and channels that do not provide information
+while also sharing information across time. Guided by the policy networks, the model is
+able to focus on relevant data and filters, avoiding unnecessary computations.
           </p>
           <p>
             We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
